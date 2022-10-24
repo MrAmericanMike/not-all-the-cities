@@ -2,8 +2,17 @@
 	"name": "not-all-the-cities",
 	"version": "0.0.1",
 	"description": "Not All The Cities",
-	"main": "src/main.js",
-	"scripts": {},
+	"main": "lib/main.js",
+	"types": "lib/main.d.ts",
+	"scripts": {
+		"tsc": "tsc",
+		"copy-files": "cp -r ./src/data/ ./lib/data/"
+	},
+	"files": [
+		"lib/**/*",
+		"package.json",
+		"README.md"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/MrAmericanMike/not-all-the-cities.git"
@@ -22,8 +31,12 @@
 	],
 	"author": "MrAmericanMike",
 	"license": "MIT",
+	"homepage": "https://github.com/MrAmericanMike/not-all-the-cities/blob/master/README.md",
 	"bugs": {
 		"url": "https://github.com/MrAmericanMike/not-all-the-cities/issues"
 	},
-	"homepage": "https://github.com/MrAmericanMike/not-all-the-cities/blob/master/README.md"
+	"devDependencies": {
+		"@types/node": "^18.11.4",
+		"typescript": "^4.8.4"
+	}
 }
