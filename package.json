@@ -1,0 +1,29 @@
+{
+	"name": "not-all-the-cities",
+	"version": "0.0.1",
+	"description": "Not All The Cities",
+	"main": "src/main.js",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MrAmericanMike/not-all-the-cities.git"
+	},
+	"keywords": [
+		"NotAllTheCities",
+		"cities",
+		"coordinates",
+		"names",
+		"countries",
+		"regions",
+		"states",
+		"populatin",
+		"continents",
+		"all"
+	],
+	"author": "MrAmericanMike",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/MrAmericanMike/not-all-the-cities/issues"
+	},
+	"homepage": "https://github.com/MrAmericanMike/not-all-the-cities/blob/master/README.md"
+}
