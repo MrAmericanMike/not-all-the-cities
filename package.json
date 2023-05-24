@@ -1,6 +1,6 @@
 {
 	"name": "not-all-the-cities",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Not All The Cities",
 	"main": "lib/main.js",
 	"types": "lib/main.d.ts",
@@ -19,6 +19,7 @@
 	},
 	"keywords": [
 		"NotAllTheCities",
+		"not-all-the-cities",
 		"cities",
 		"coordinates",
 		"names",
@@ -40,3 +41,4 @@
 		"typescript": "^4.8.4"
 	}
 }
+
