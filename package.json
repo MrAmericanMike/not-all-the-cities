@@ -1,6 +1,6 @@
 {
 	"name": "not-all-the-cities",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Not All The Cities",
 	"main": "lib/main.js",
 	"types": "lib/main.d.ts",

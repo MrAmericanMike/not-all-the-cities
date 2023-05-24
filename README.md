@@ -15,7 +15,7 @@ const NotAllTheCities = require("not-all-the-cities");
 
 const NATC = new NotAllTheCities("10k");
 
-let CITIES = NATC.getOverWithCutomKeys(5000000, ["name", "lat", "lng"]);
+let CITIES = NATC.getOverWithCustomKeys(5000000, ["name", "lat", "lng"]);
 
 console.log(CITIES[0]);
 ```

@@ -49,7 +49,7 @@ class NotAllTheCities {
 		});
 	}
 
-	getOverWithCutomKeys(population: number, keys: keys[]) {
+	getOverWithCustomKeys(population: number, keys: keys[]) {
 		const filtered = this.#SEED.filter((city) => parseInt(city[6]) >= population);
 		return filtered.map((city) => {
 			return this.#cityAsObjectCustomKeys(city, keys);
@@ -104,3 +104,4 @@ class NotAllTheCities {
 }
 
 export = NotAllTheCities;
+
