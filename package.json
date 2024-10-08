@@ -41,7 +41,7 @@
 		"url": "https://github.com/MrAmericanMike/not-all-the-cities/issues"
 	},
 	"devDependencies": {
-		"@types/node": "22.5.5",
+		"@types/node": "22.7.5",
 		"typescript": "5.6.2"
 	}
 }
