@@ -1,9 +1,10 @@
 {
 	"name": "not-all-the-cities",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Not All The Cities",
 	"main": "lib/main.js",
 	"types": "lib/main.d.ts",
+	"type": "module",
 	"scripts": {
 		"tsc": "tsc",
 		"copy-files": "cp -r ./src/data/ ./lib/data/"
@@ -28,6 +29,9 @@
 		"states",
 		"populatin",
 		"continents",
+		"latitude",
+		"longitude",
+		"geography",
 		"all"
 	],
 	"author": "MrAmericanMike",

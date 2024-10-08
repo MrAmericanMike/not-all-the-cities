@@ -1,5 +1,5 @@
-const K10 = require("./data/10k.json");
-const K1 = require("./data/1k.json");
+import K10 from "./data/10k.js";
+import K1 from "./data/1k.js";
 
 interface city {
 	name?: string;
@@ -103,5 +103,5 @@ class NotAllTheCities {
 	}
 }
 
-export = NotAllTheCities;
+export default NotAllTheCities;
 
