@@ -1,5 +1,5 @@
-import K10 from "./data/10k.js";
-import K1 from "./data/1k.js";
+import K10 from "./data/10k.ts";
+import K1 from "./data/1k.ts";
 
 interface city {
 	name?: string;
