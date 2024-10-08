@@ -18,30 +18,57 @@ type keys = "name" | "local" | "lat" | "lng" | "code" | "region" | "population" 
 class NotAllTheCities {
 	#SEED: string[][];
 
+	/**
+	 * @param {string} seed - "10k" or "1k" - defaults to "10k"
+	 * @returns {NotAllTheCities}
+	 */
 	constructor(seed: "10k" | "1k" = "10k") {
 		seed === "1k" ? (this.#SEED = K1) : (this.#SEED = K10);
 	}
 
+	/**
+	 * Returns all cities
+	 * @returns {string[][]}
+	 */
 	getAll() {
 		return this.#SEED;
 	}
 
+	/**
+	 * Returns all cities as objects with keys
+	 * @returns {city[]}
+	 */
 	getAllWithKeys() {
 		return this.#SEED.map((city) => {
 			return this.#cityAsObject(city);
 		});
 	}
 
+	/**
+	 * Returns all cities as objects with custom keys
+	 * @param {keys[]} keys
+	 * @returns {city[]}
+	 */
 	getAllWithCustomKeys(keys: keys[]) {
 		return this.#SEED.map((city) => {
 			return this.#cityAsObjectCustomKeys(city, keys);
 		});
 	}
 
+	/**
+	 * Returns all cities over a certain population
+	 * @param {number} population
+	 * @returns {string[][]}
+	 */
 	getOver(population: number) {
 		return this.#SEED.filter((city) => parseInt(city[6]) >= population);
 	}
 
+	/**
+	 * Returns all cities over a certain population as objects with keys
+	 * @param {number} population
+	 * @returns {city[]}
+	 */
 	getOverWithKeys(population: number) {
 		const filtered = this.#SEED.filter((city) => parseInt(city[6]) >= population);
 		return filtered.map((city) => {
@@ -49,6 +76,12 @@ class NotAllTheCities {
 		});
 	}
 
+	/**
+	 * Returns all cities over a certain population as objects with custom keys
+	 * @param {number} population
+	 * @param {keys[]} keys
+	 * @returns {city[]}
+	 */
 	getOverWithCustomKeys(population: number, keys: keys[]) {
 		const filtered = this.#SEED.filter((city) => parseInt(city[6]) >= population);
 		return filtered.map((city) => {
