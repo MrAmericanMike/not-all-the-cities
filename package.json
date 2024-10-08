@@ -2,15 +2,24 @@
 	"name": "not-all-the-cities",
 	"version": "0.0.4",
 	"description": "Not All The Cities",
-	"main": "lib/main.js",
-	"types": "lib/main.d.ts",
-	"type": "module",
+	"author": "MrAmericanMike",
+	"main": "dist/main.cjs",
+	"module": "dist/main.mjs",
+	"types": "dist/main.d.ts",
+	"exports": {
+		".": {
+			"require": "./dist/main.cjs",
+			"import": "./dist/main.mjs"
+		}
+	},
 	"scripts": {
-		"tsc": "tsc",
-		"copy-files": "cp -r ./src/data/ ./lib/data/"
+		"build": "rollup --config",
+		"test": "vitest",
+		"coverage": "vitest run --coverage",
+		"prepublishOnly": "pnpm run build"
 	},
 	"files": [
-		"lib/**/*",
+		"dist/**/*",
 		"package.json",
 		"README.md"
 	],
@@ -34,7 +43,6 @@
 		"geography",
 		"all"
 	],
-	"author": "MrAmericanMike",
 	"license": "MIT",
 	"homepage": "https://github.com/MrAmericanMike/not-all-the-cities/blob/master/README.md",
 	"bugs": {
@@ -42,6 +50,12 @@
 	},
 	"devDependencies": {
 		"@types/node": "22.7.5",
-		"typescript": "5.6.3"
+		"typescript": "5.6.3",
+		"@rollup/plugin-typescript": "12.1.0",
+		"@vitest/coverage-v8": "2.1.2",
+		"rollup": "4.24.0",
+		"rollup-plugin-delete": "2.1.0",
+		"tslib": "2.7.0",
+		"vitest": "2.1.2"
 	}
 }
