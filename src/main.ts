@@ -1,44 +1,56 @@
-import K10 from "./data/10k.ts";
-import K1 from "./data/1k.ts";
+import { CityData, DataKeys, RawCityData } from "./types.ts";
 
-interface city {
-	name?: string;
-	local?: string;
-	lat?: number;
-	lng?: number;
-	code?: string;
-	region?: string;
-	population?: number;
-	elevation?: number;
-	continent?: string;
-}
+export default class NotAllTheCities {
+	#SEED?: RawCityData;
 
-type keys = "name" | "local" | "lat" | "lng" | "code" | "region" | "population" | "elevation" | "continent";
-
-class NotAllTheCities {
-	#SEED: string[][];
+	constructor() {}
 
 	/**
+	 * Loads the cities data for the given seed
 	 * @param {string} seed - "10k" or "1k" - defaults to "10k"
-	 * @returns {NotAllTheCities}
+	 * @returns Promise<boolean>
 	 */
-	constructor(seed: "10k" | "1k" = "10k") {
-		seed === "1k" ? (this.#SEED = K1) : (this.#SEED = K10);
+	async loadCities(seed: "10k" | "1k" = "10k"): Promise<boolean> {
+		try {
+			const dataModule: { default: RawCityData } = await import(`./data/${seed}.ts`);
+			this.#SEED = dataModule.default;
+			return true;
+		} catch (error) {
+			return false;
+		}
+	}
+
+	#ensureDataLoaded(): boolean {
+		if (!this.#SEED) {
+			if (process.env.NODE_ENV === "development") {
+				throw new Error("Cities data not loaded. Call loadCities() first.");
+			} else {
+				console.error("Cities data not loaded. Call loadCities() first.");
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
 	 * Returns all cities
-	 * @returns {string[][]}
+	 * @returns {RawCityData}
 	 */
-	getAll() {
+	getAll(): RawCityData {
+		if (this.#ensureDataLoaded() === false || this.#SEED === undefined) {
+			return [];
+		}
 		return this.#SEED;
 	}
 
 	/**
 	 * Returns all cities as objects with keys
-	 * @returns {city[]}
+	 * @returns {CityData[]}
 	 */
-	getAllWithKeys() {
+	getAllWithKeys(): CityData[] {
+		if (this.#ensureDataLoaded() === false || this.#SEED === undefined) {
+			return [];
+		}
 		return this.#SEED.map((city) => {
 			return this.#cityAsObject(city);
 		});
@@ -46,10 +58,13 @@ class NotAllTheCities {
 
 	/**
 	 * Returns all cities as objects with custom keys
-	 * @param {keys[]} keys
-	 * @returns {city[]}
+	 * @param {DataKeys[]} keys
+	 * @returns {CityData[]}
 	 */
-	getAllWithCustomKeys(keys: keys[]) {
+	getAllWithCustomKeys(keys: DataKeys[]): CityData[] {
+		if (this.#ensureDataLoaded() === false || this.#SEED === undefined) {
+			return [];
+		}
 		return this.#SEED.map((city) => {
 			return this.#cityAsObjectCustomKeys(city, keys);
 		});
@@ -58,20 +73,26 @@ class NotAllTheCities {
 	/**
 	 * Returns all cities over a certain population
 	 * @param {number} population
-	 * @returns {string[][]}
+	 * @returns {RawCityData}
 	 */
-	getOver(population: number) {
+	getOver(population: number): RawCityData {
+		if (this.#ensureDataLoaded() === false || this.#SEED === undefined) {
+			return [];
+		}
 		return this.#SEED.filter((city) => parseInt(city[6]) >= population);
 	}
 
 	/**
 	 * Returns all cities over a certain population as objects with keys
 	 * @param {number} population
-	 * @returns {city[]}
+	 * @returns {CityData[]}
 	 */
-	getOverWithKeys(population: number) {
+	getOverWithKeys(population: number): CityData[] {
+		if (this.#ensureDataLoaded() === false || this.#SEED === undefined) {
+			return [];
+		}
 		const filtered = this.#SEED.filter((city) => parseInt(city[6]) >= population);
-		return filtered.map((city) => {
+		return filtered?.map((city) => {
 			return this.#cityAsObject(city);
 		});
 	}
@@ -79,17 +100,20 @@ class NotAllTheCities {
 	/**
 	 * Returns all cities over a certain population as objects with custom keys
 	 * @param {number} population
-	 * @param {keys[]} keys
-	 * @returns {city[]}
+	 * @param {DataKeys[]} keys
+	 * @returns {CityData[]}
 	 */
-	getOverWithCustomKeys(population: number, keys: keys[]) {
+	getOverWithCustomKeys(population: number, keys: DataKeys[]): CityData[] {
+		if (this.#ensureDataLoaded() === false || this.#SEED === undefined) {
+			return [];
+		}
 		const filtered = this.#SEED.filter((city) => parseInt(city[6]) >= population);
-		return filtered.map((city) => {
+		return filtered?.map((city) => {
 			return this.#cityAsObjectCustomKeys(city, keys);
 		});
 	}
 
-	#cityAsObject(city: string[]): city {
+	#cityAsObject(city: string[]): CityData {
 		return {
 			"name": city[0],
 			"local": city[1],
@@ -103,8 +127,8 @@ class NotAllTheCities {
 		};
 	}
 
-	#cityAsObjectCustomKeys(city: string[], keys: keys[]) {
-		let data: city = {};
+	#cityAsObjectCustomKeys(city: string[], keys: DataKeys[]) {
+		let data: CityData = {};
 		if (keys.includes("name")) {
 			data.name = city[0];
 		}
@@ -135,6 +159,4 @@ class NotAllTheCities {
 		return data;
 	}
 }
-
-export default NotAllTheCities;
 
