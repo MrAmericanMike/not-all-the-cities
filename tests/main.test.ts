@@ -1,10 +1,8 @@
 import { describe, expect, it } from "vitest";
 import NotAllTheCities from "../src/main";
 
-const NATC_10K = new NotAllTheCities();
-await NATC_10K.loadCities("10k");
-const NATC_1K = new NotAllTheCities();
-await NATC_1K.loadCities("1k");
+const NATC_10K = await NotAllTheCities.create("10k");
+const NATC_1K = await NotAllTheCities.create("1k");
 
 describe("NotAllTheCities 10K Tests", () => {
 	it("getAll should return correct information", () => {

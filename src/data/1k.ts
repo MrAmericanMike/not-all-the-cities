@@ -1,4 +1,4 @@
-import { RawCityData } from "../types.ts";
+import { RawCityData } from "../types";
 
 const K1: RawCityData = [
 	["El Tarter", "El Tarter", "42.57952", "1.65362", "AD", "02", "1052", "1721", "Europe"],
@@ -111825,3 +111825,4 @@ const K1: RawCityData = [
 ];
 
 export default K1;
+

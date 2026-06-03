@@ -4,18 +4,18 @@
 		"rollup.config.mjs",
 	],
 	"compilerOptions": {
-		"outDir": "dist",
 		"target": "ES2020",
-		"module": "ES2020",
-		"moduleResolution": "Node",
+		"module": "esnext",
+		"moduleResolution": "bundler",
 		"strict": true,
 		"skipLibCheck": true,
 		"declaration": true,
 		"sourceMap": false,
 		"noUnusedLocals": true,
 		"esModuleInterop": true,
-		"allowImportingTsExtensions": true,
-		"noEmit": true
+		"types": [
+			"node"
+		]
 	},
 	"exclude": [
 		"dist",

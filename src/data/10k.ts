@@ -1,4 +1,4 @@
-import { RawCityData } from "../types.ts";
+import { RawCityData } from "../types";
 
 const K10: RawCityData = [
 	["les Escaldes", "les Escaldes", "42.50729", "1.53414", "AD", "08", "15853", "1033", "Europe"],
